@@ -1,0 +1,18 @@
+{
+    "python.pythonPath": "",
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "cSpell.words": [
+        "anos",
+        "comex",
+        "Comex",
+        "consulta",
+        "movimentacao",
+        "movimentacoes",
+        "pais",
+        "produto",
+        "produtos",
+        "quantidade",
+        "unidade"
+    ]
+}
