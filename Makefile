@@ -22,3 +22,12 @@ lint: venv clean
 run-dev: venv
 	LOG_LEVEL=DEBUG pipenv run uvicorn app.main:app --reload
 
+setup-dev-db: venv
+	pipenv run python -m app table_file_to_db input/d_sh2.xlsx d_sh2 --xlsx
+	pipenv run python -m app table_file_to_db input/d_via.xlsx d_via --xlsx
+	pipenv run python -m app table_file_to_db input/f_comex.csv f_comex
+
+setup-heroku-db: venv
+	DATABASE_URL=$$(heroku config:get DATABASE_URL) pipenv run python -m app table_file_to_db input/d_sh2.xlsx d_sh2 --xlsx
+	DATABASE_URL=$$(heroku config:get DATABASE_URL) pipenv run python -m app table_file_to_db input/d_via.xlsx d_via --xlsx
+	DATABASE_URL=$$(heroku config:get DATABASE_URL) pipenv run python -m app table_file_to_db input/f_comex.csv f_comex

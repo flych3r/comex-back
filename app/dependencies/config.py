@@ -1,6 +1,6 @@
 from enum import Enum
 from collections import namedtuple
-from pydantic import BaseSettings
+from pydantic import BaseSettings, validator
 
 
 class AppEnv(str, Enum):
@@ -21,6 +21,12 @@ class Settings(BaseSettings):
     class Config:
         env_file = '.env'
         env_file_encoding = 'utf-8'
+
+    @validator('database_url')
+    def postgres_dialect(cls, value):
+        if value.startswith('postgres://'):
+            value = value.replace('postgres://', 'postgresql://', 1)
+        return value
 
 
 SETTINGS = Settings()

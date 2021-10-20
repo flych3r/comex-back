@@ -2,16 +2,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from app.dependencies.config import SETTINGS, AppEnv
+from app.dependencies.config import SETTINGS
 
 connect_args = {}
 database_url = SETTINGS.database_url
-
-if SETTINGS.app_env == AppEnv.test:
-    connect_args = {'check_same_thread': False}
-else:
-    if database_url.startswith('postgres://'):
-        database_url = database_url.replace('postgres://', 'postgresql://', 1)
 
 engine = create_engine(database_url, connect_args=connect_args)
 
