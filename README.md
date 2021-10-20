@@ -20,7 +20,7 @@ python -m app download <output-file-path>
 
 ## Running the app
 
-After everithing is setup, run the command and access the url <http://localhost:8000/docs>:
+After everything is setup, run the command and access the url <http://localhost:8000/docs>:
 ```bash
 make run-dev
 ```
